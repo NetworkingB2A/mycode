@@ -1,0 +1,19 @@
+---
+- name: Using Ansible to send an HTTP PUT request
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: Send HTTP PUT to requestbin.com
+    ansible.builtin.uri:
+      url: "{{ urltolookup }}"
+      method: PUT
+      headers:
+        Content-Type: application/json
+        Storage-auth-token: abcdefg717
+      body_format: json
+      body:
+        name: student
+        policy: bronze
+        storage_type: flash
