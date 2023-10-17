@@ -1,0 +1,6 @@
+---
+# tasks/redhat.yml
+# tasks only to be run on redhat
+- name: Preform test on this Redhat platform
+  ansible.builtin.debug:
+    msg: 'Name: {{ ansible_facts.hostname }}, Plateform: {{ ansible_facts.os_family }}'

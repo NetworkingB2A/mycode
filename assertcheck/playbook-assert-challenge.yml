@@ -1,0 +1,27 @@
+---
+- name: Checking the system has correct hardware assigned
+  hosts: planetexpress
+  connection: ssh
+  gather_facts: true
+
+  tasks:
+    - name: Here is a list of expected 
+      ansible.builtin.debug:
+        msg: |
+          processor version = apple
+          ram = 9.856 gb
+          
+
+
+    - name: Checking processor
+      ansible.builtin.assert:
+        that: ansible_facts.processor
+        fail_msg: "You are magic. How are you running this without a processor"
+        success_msg: "Here is your processor output {{ ansible_facts.processor }}"
+    
+    - name: Checking ram
+      ansible.builtin.assert:
+        that: ansible_facts.swapfree_mb == 1326
+        fail_msg: "Here is your current RAM {{ ansible_facts.swapfree_mb }}. This is not the correct amount."
+        success_msg: "Here is your processor output {{ ansible_facts.swapfree_mb }}"
+        
