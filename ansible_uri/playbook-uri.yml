@@ -1,0 +1,16 @@
+---
+- name: Using Ansible to send an HTTP GET request
+  hosts: docker_hosts
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Send HTTP GET to Eventservice
+    ansible.builtin.uri:
+      url: http://{{ ansible_host }}/redfish/v1/ComponentIntegrity
+      method: GET
+    register: ComponentIntegrity
+
+  - name: "Output response"
+    debug:
+      var: ComponentIntegrity
