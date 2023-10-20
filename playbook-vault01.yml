@@ -1,0 +1,13 @@
+---
+- name: A simple playbook
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  
+  vars_files:
+    - vars/secret.yml
+  
+  tasks: # Sets the tasks to perform
+    - name: A simple hello task
+      debug:
+        var: dellemc_poweredge.password

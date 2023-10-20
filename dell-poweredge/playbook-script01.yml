@@ -1,0 +1,11 @@
+---
+- name: Creating a script playbook
+  hosts: planetexpress
+  connection: ssh
+  gather_facts: true
+
+  tasks:
+  - name: Run a script with arguments (free form)
+    ansible.builtin.script: ./files/GetSetPowerStateREDFISH.py 
+     args:
+       ip: 10.10.10.10

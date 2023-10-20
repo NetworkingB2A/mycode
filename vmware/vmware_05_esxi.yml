@@ -1,0 +1,19 @@
+---
+- name: Connect directly to an ESXi host and collect facts
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+
+  - name: Get category id from the given tag
+    community.vmware.vmware_tag_info:
+        validate_certs: false
+        hostname: 10.0.0.90   # ESXi hostname
+        username: root        # ESXi username
+        password: calvin23!   # ESXi password
+    register: tag_details
+  
+  - debug:
+      msg: "{{ tag_details }}"  
+
